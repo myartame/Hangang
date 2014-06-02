@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>한강, 한양대학교 익명 강의평가 사이트</title>
+
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$.get(document.url, function(data){
+    			if (data.flag){
+    				alert("회원가입이 완료되었습니다!");
+    			}
+    			else {
+    				alert("회원가입이 실패하였습니다!");
+    			}
+    			location.replace('/');
+    		})
+    	});	
+    </script>
+</head>
+</html>

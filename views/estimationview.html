@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>한강, 한양대학교 익명 강의평가 사이트</title>
+
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="/stylesheets/navbar.css" rel="stylesheet">
+    <link href="/stylesheets/font.css" rel="stylesheet">
+    <link href="/stylesheets/content.css" rel="stylesheet">
+    <link href="/stylesheets/form.css" rel="stylesheet">
+    <link href="/stylesheets/item.css" rel="stylesheet">
+
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/masonry.js"></script>
+
+    <script src="/javascripts/string.js" type="text/javascript"></script>
+    <script src="/javascripts/navbar.js"></script>
+    <script src="/javascripts/estimation.js"></script>
+</head>
+<body style="min-width: 992px; background-color: rgb(241, 242, 243);">
+    <div id="container">
+        <div id="navbar-container" class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">새강의평</a></li>
+                    <li><a href="/cheat">족보찾기</a></li>
+                    <li class="active"><a href="/estimation">평가검색</a></li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" id="search-form" class="form-control" placeholder="교수 or 과목을 입력해주세요">
+                    </div>
+                    <button type="submit" class="btn btn-default" id="search-button">
+                        <span class="glyphicon glyphicon-search" style="color: white"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="content-container">
+            <div class="container">
+                <div id="content-textArea">
+                    <span id="content-headText"><strong>평가하기</strong></span>
+                    <span id="content-subText">수강한 강의를 익명으로 평가할 수 있습니다</span>
+                </div>
+                <div id="content-formArea">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <div class="btn-group">
+                                <button id="majorBtn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span class="dropdown-text">학부 선택</span><span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-major" role="menu">
+                                    <li role="presentation" class="dropdown-header">공과대학</li>
+                                    <li><a>건축학부</a></li>
+                                    <li><a href="#">건축공학부</a></li>
+                                    <li><a href="#">건설환경공학과</a></li>
+                                    <li><a href="#">도시공학과</a></li>
+                                    <li><a href="#">자연환경공학과</a></li>
+                                    <li><a href="#">융합전자공학부</a></li>
+                                    <li><a href="#">컴퓨터공학부</a></li>
+                                    <li><a href="#">컴퓨터전공</a></li>
+                                    <li><a href="#">소프트웨어전공</a></li>
+                                    <li><a href="#">정보시스템학과</a></li>
+                                    <li><a href="#">전기.생체공학부</a></li>
+                                    <li><a href="#">전기공학전공</a></li>
+                                    <li><a href="#">생체공학전공</a></li>
+                                    <li><a href="#">신소재공학부</a></li>
+                                    <li><a href="#">화공생명공학부</a></li>
+                                    <li><a href="#">화학공학전공</a></li>
+                                    <li><a href="#">생명공학전공</a></li>
+                                    <li><a href="#">유기나노공학과</a></li>
+                                    <li><a href="#">기계공학부</a></li>
+                                    <li><a href="#">원자력공학과</a></li>
+                                    <li><a href="#">산업공학과</a></li>
+                                    <li><a href="#">에너지공학과</a></li>
+                                    <li><a href="#">미래자동차공학과</a></li>
+                                    <li><a href="#">응용시스템학과</a></li>
+                                    <li class="divider"></li>
+                                    <li role="presentation" class="dropdown-header">의과대학</li>
+                                    <li><a href="#">의예과</a></li>
+                                    <li><a href="#">의학과</a></li>
+                                    <li class="divider"></li>
+                                    <li role="presentation" class="dropdown-header">인문과학대학</li>
+                                    <li><a href="#">국어국문학과</a></li>
+                                    <li><a href="#">중어중문학과</a></li>
+                                    <li><a href="#">영어영문학과</a></li>
+                                    <li><a href="#">독어독문학과</a></li>
+                                    <li><a href="#">사학과</a></li>
+                                    <li><a href="#">철학과</a></li>
+                                    <li><a href="#">수행인문학부</a></li>
+                                    <li class="divider"></li>
+                                    <li role="presentation" class="dropdown-header">사회과학대학</li>
+                                    <li><a href="#">사회과학부</a></li>
+                                    <li><a href="#">정치외교학전공</a></li>
+                                    <li><a href="#">행정학전공</a></li>
+                                    <li><a href="#">사회학전공</a></li>
+                                    <li><a href="#">미디어커뮤니케이션전공</a></li>
+                                    <li><a href="#">관광학부</a></li> 
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">자연과학대학</li>
+                                    <li><a href="#">수학과</a></li>
+                                    <li><a href="#">물리학과</a></li>
+                                    <li><a href="#">화학과</a></li>
+                                    <li><a href="#">사회학전공</a></li>
+                                    <li><a href="#">미디어커뮤니케이션전공</a></li>
+                                    <li><a href="#">생명과학과</a></li>
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">정책과학대학</li>
+                                    <li><a href="#">정책학과</a></li>
+                                    <li><a href="#">행정학과</a></li>
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">법과대학</li>
+                                    <li><a href="#">법학과</a></li>
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">경제금융대학</li>
+                                    <li><a href="#">경제금융학부</a></li>
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">경영대학</li>
+                                    <li><a href="#">경영학부</a></li>
+                                    <li><a href="#">파이낸스경영학과</a></li>
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">사범대학</li>
+                                    <li><a href="#">교육학과</a></li>
+                                    <li><a href="#">교육공학과</a></li>
+                                    <li><a href="#">국어교육과</a></li>
+                                    <li><a href="#">영어교육과</a></li>
+                                    <li><a href="#">수학교육과</a></li>
+                                    <li><a href="#">응용미술교육과</a></li>
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">생활과학대학</li>
+                                    <li><a href="#">의류학과</a></li>
+                                    <li><a href="#">식품영양학과</a></li>
+                                    <li><a href="#">실내건축디자인학과</a></li>
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">음악대학</li>
+                                    <li><a href="#">성악과</a></li>
+                                    <li><a href="#">작곡과</a></li>
+                                    <li><a href="#">피아노과</a></li>
+                                    <li><a href="#">관현악과</a></li>
+                                    <li><a href="#">국악과</a></li>
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">예술·체육대학</li>
+                                    <li><a href="#">체육학과</a></li>
+                                    <li><a href="#">스포츠산업학과</a></li>
+                                    <li><a href="#">연극영화학과</a></li>
+                                    <li><a href="#">무용학과</a></li>
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">국제학부</li>
+                                    <li><a href="#">국제학부</a></li>
+                                    <li class="divider"></li>   
+                                    <li role="presentation" class="dropdown-header">간호학부</li>
+                                    <li><a href="#">간호학부</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="btn-group">
+                                <button id="gradeBtn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span class="dropdown-text">학년 선택</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-grade" role="menu">
+                                    <li><a>1학년</a></li>
+                                    <li><a>2학년</a></li>
+                                    <li><a>3학년</a></li>
+                                    <li><a>4학년</a></li>
+                                    <li role="presentation" class="dropdown-header">건축 / 의예</li>
+                                    <li><a>5학년</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="btn-group">
+                                <button id="processBtn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span class="dropdown-text">과정 구분</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-process" role="menu">
+                                    <li><a>기초필수</a></li>
+                                    <li><a>전공핵심</a></li>
+                                    <li><a>전공심화</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group pull-right col-lg-5 col-md-5 col-sm-5">
+                            <div class="input-group">
+                                <input type="text" id="form-search" class="form-control" placeholder="교수 or 과목 입력">
+                                <span id="form-search-button" class="input-group-addon">
+                                    <span class="glyphicon glyphicon-search" style="color: white"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="content-itemArea">
+                    <% data.forEach(function(item, index){ %>
+                    <div class="content-item" alt="<%= item.class_number %>">
+                        <div id="item-box">
+                            <img id="item-thumbnail" src="/images/professor/<%= item.professor %>.jpg">
+                            <div id="item-textArea">
+                                <span id="item-headText"><strong><%= item.name %></strong></span>
+                                <span id="item-subText"><%= item.professor %></span>
+                            </div>
+                            <div id="item-starArea">
+                                <% var rate = Math.floor(item.rate); %>
+                                <% for (var i = 1 ; i <= rate ; i++){ %>
+                                <img src="/images/star_enable.png">
+                                <% } %>
+                                <% for (var i = rate + 1 ; i <= 5 ; i++){ %>
+                                <img src="/images/star_disenable.png">
+                                <% } %>
+                                <span id="item-starText"><%= rate + " / 5" %></span>
+                            </div>
+                            <div id="item-line"></div>
+                            <div id="item-tagArea">
+                                <div class="item-tagItem"><p><%= item.major %></p></div>
+                                <div class="item-tagItem"><p><%= item.grade + "학년" %></p></div>
+                                <div class="item-tagItem"><p><%= item.process %></p></div>
+                            </div>
+                            <div id="item-countTextArea">
+                                <span id="countIcon">
+                                    <span class="glyphicon glyphicon-edit" style="color: rgb(87, 86, 86);"></span>
+                                </span>
+                                <span id="countText"><strong><%= item.comment_count %></strong></span>
+                                <span id="countText-content">개의 댓글이 달려있습니다.</span>
+                            </div>
+                        </div>
+                        <div class="item-hoverBox"></div>
+                        <img class="item-hoverSearch" src="/images/search_icon.svg">
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

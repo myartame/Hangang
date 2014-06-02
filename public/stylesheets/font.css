@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: ng;
+    src: url(resource/font/NanumGothic.eot);
+    src: local(※), url(resource/font/NanumGothic.woff) format(‘woff’);
+}
+
+body{
+    font-family: 'Nanum Gothic', '나눔고딕', ng;
+}

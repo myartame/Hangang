@@ -1,0 +1,212 @@
+@charset "utf-8";
+
+.navbar-default{
+    background: rgb(255, 255, 255);
+}
+
+.navbar-nav a{
+    margin-top: 13px;
+}
+
+.navbar-brand img{
+    padding-left: 70px;
+}
+
+.navbar-nav{
+    padding-left: 60px;
+}
+
+.navbar-nav li{
+}
+
+#search-form{
+    margin-top: 14px;
+    border-radius: 4px 0px 0px 4px;
+    width: 250px;
+    font-size: 9pt;
+}
+
+@media (min-width: 1200px) {
+    #search-form{
+        margin-top: 13px;
+        border-radius: 4px 0px 0px 4px;
+        width: 470px;
+    }
+}
+
+#search-button{
+    background-color: rgb(0, 158, 227);
+    border-radius: 0px 4px 4px 0px;
+    width: 40px;
+    height: 34px;
+    margin-top: 14px;
+    margin-left: -5px;
+    margin-right: 50px;
+}
+
+#navbar-logoutWrap{
+    font-size: 8pt;
+    margin-top: -24px;
+    margin-left: 10px;
+    color: rgb(0, 158, 227);
+}
+
+#navbar-logoutWrap > a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+    background-color: #ffffff;
+    color: rgb(0, 158, 227);
+}
+
+.navbar-loginArea{
+    float: left;
+    margin-right: 20px;
+}
+
+.navbar-inputArea{
+    margin-top: 17px;
+}
+
+.navbar-idText{
+    margin-bottom: -5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.navbar-idText input{
+    border: 0px solid;
+    width: 110px;
+    font-size: 10pt;
+    color: #000000;
+}
+
+.navbar-idText span{
+    color: rgb(180, 181, 181);
+    padding-top: 50px;
+    font-size: 10pt;
+}
+
+.navbar-line{
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(180, 181, 181);
+}
+
+.navbar-forgotText{
+    margin-top: -5px;
+}
+
+.navbar-forgotText:hover{
+    cursor: pointer;
+}
+
+.navbar-forgotText div{
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    background-color: rgb(0, 158, 227);
+    display: inline-block;
+}
+
+.navbar-forgotText span{
+    font-size: 8pt;
+    color: rgb(0, 158, 227);
+    margin-left: 3px;
+}
+
+.btn-default{
+    margin-top: 22px;
+}
+
+#navbar-btnArea{
+    margin-top: 25px;
+    float: left;
+}
+
+.navbar-loginBtn{
+    width: 80px;
+    height: 30px;
+    font-size: 9pt;
+    display: inline-block;
+    float: left;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.navbar-loginBtn:hover{
+    cursor: pointer;
+}
+
+.navbar-loginBtn div{
+    padding-top: 5px;
+}
+
+#loginBtn{
+    margin-right: 10px;
+    background-color: rgb(0, 158, 227);
+    color: #ffffff;
+}
+
+.modal-header span{
+    font-size: 14pt;
+    margin-left: 10px;
+}
+
+.form-group label{
+    color: rgb(0, 158, 227);
+}
+
+#subEmailText{
+    color: rgb(135, 135, 134);
+    margin-left: 0px;
+}
+
+#joinBtn{
+    border: 1px solid #CCCCCC;
+    margin-right: 70px;
+}
+
+.modal-btn, .modal-btn div{
+    width: 110px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.modal-btn{
+    background-color: rgb(0, 158, 227);
+    color: #ffffff;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: -20px;
+}
+
+.modal-btn div{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.modal-btn div:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.modal-btn span{
+    margin-top: 5px;
+}
+
+.modal-btn-text{
+    padding-top: 10px;
+}
+
+.modal-footer{
+    background-color: rgb(235, 239, 241);
+    border-radius: 0 0 5px 5px;
+    text-align: left;
+    font-size: 9pt;
+}
+
+

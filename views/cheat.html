@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>한강, 한양대학교 익명 강의평가 사이트</title>
+
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="/stylesheets/navbar.css" rel="stylesheet">
+    <link href="/stylesheets/font.css" rel="stylesheet">
+    <link href="/stylesheets/content.css" rel="stylesheet">
+    <link href="/stylesheets/form.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/cheat.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/list.css">
+
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/javascripts/cheat.js"></script>
+</head>
+<body style="min-width: 992px; background-color: rgb(241, 242, 243);">
+    <div id="container">
+        <div id="navbar-container" class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">새강의평</a></li>
+                    <li class="active"><a href="/cheat">족보찾기</a></li>
+                    <li><a href="/estimation">평가검색</a></li>
+                </ul>
+                <form class="navbar-form navbar-right" role="upload">
+                    <button type="button" data-toggle="modal" data-target="#uploadModal" class="btn btn-default btn-lg" style="width:40px; margin-top:12px;">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="content-container">
+            <div class="container">
+                <div id="content-textArea">
+                    <span id="content-headText"><strong>족보찾기</strong></span>
+                    <span id="content-subText">우측 상단의 업로드 버튼을 통해 족보를 공유해주세요!</span>
+                </div>
+                <div id="content-formArea">
+                    <div id="content-searchArea">
+                        <div class="input-group">
+                            <input type="text" id="form-search" class="form-control" placeholder="교수 or 과목 입력">
+                            <span id="form-search-button" class="input-group-addon">
+                                <span class="glyphicon glyphicon-search" style="color: white"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div id="content-listArea">
+                    <% data.forEach(function(value, index){ %>
+                    <div class="content-listCheatItem" alt="<%= value.id %>">
+                        <img class="list-professorImg" src="/images/professor/<%= value.professor %>.jpg">
+                        <div class="list-content">
+                            <span class="list-headText">
+                                <strong><%= value.lecture %></strong>
+                            </span>
+                            <span class="list-subText"><%= value.professor %> 교수님</span>
+                            <div class="list-line"></div>
+                            <p class="list-contentText"><%= value.content %></p>
+                            <div class="list-bottomLine"></div>
+                            <div class="list-tagArea">
+                                <div class="list-tagItem">
+                                    <p>다운로드 : <%= value.download_count %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-coverWrap">
+                            <div class="content-listCover"></div>
+                            <img class="content-downloadBtn" src="/images/download.svg">
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-container">
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <span><strong>족보공유</strong></span>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" action="/cheat" method="post" enctype="multipart/form-data" id="modal-cheatForm">
+                            <div class="form-group">
+                                <label for="uploadLectureLabel" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">과목명</label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="uploadLectureInput" name="uploadLectureInput" placeholder="전산학개론">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="uploadProfessorLabel" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">교수명</label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="uploadProfessorInput" name="uploadProfessorInput" placeholder="ex) 원영준">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="uploadContentLabel" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">분류</label>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" id="uploadContentInput" name="uploadContentInput" placeholder="1학기 중간고사">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="uploadContentLabel" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">자료</label>
+                                <div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <a id="uploadSmallBtn" class="input-group-addon" style="background-color: #EEEEEE; color: #555555;" onclick="$('#uploadDialog').click();">
+                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                    </a>
+                                    <input id="uploadDialog" name="uploadDialog" type="file">
+                                    <input id="uploadLargeInput" class="form-control" type="text" readonly="" placeholder="파일로 올리기" onclick="$('#uploadDialog').click();" />
+                                </div>
+                            </div>
+                            <div class="modal-btn" id="uploadBtn"><div><div class="modal-btn-text" ><strong>업로드</strong></div></div></div>
+                            <!--<input id="modal-btn" type="submit" value="업로드" />-->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <p>* 족보를 공유해주셔야 서비스가 활성됩니다.</p>
+                            <p style="margin-bottom: 0px">* 많이들 올려주세요 ㅠㅠ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>  
+</body>
+</html>

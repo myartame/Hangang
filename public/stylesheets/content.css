@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+#content-container{
+    //background-color: rgb(241, 242, 243);
+    margin-top: -20px;
+}
+
+#content-textArea{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#content-headText{
+    font-size: 16pt;
+    color: rgb(87, 86, 86);
+}
+
+#content-subText{
+    font-size: 10pt;
+    color: rgb(135, 135, 134);
+    margin-left: 5px;
+}
+

@@ -1,0 +1,395 @@
+@charset "utf-8";
+
+#content-mainArea{
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid rgb(218, 218, 217);
+}
+
+#main-imgArea{
+    float: left;
+    display: inline-block;
+    position: relative;
+}
+
+#main-imgArea img{
+    width: 200px;
+    height: auto;
+}
+
+#main-textArea{
+    width: 100%;
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    position: absolute;
+    bottom: 0px;
+}
+
+#main-textView{
+    display: inline-block;
+}
+
+#main-headText{
+    font-size: 12pt;
+    margin-bottom: 3px;
+}
+
+#main-subText{
+    font-size: 9pt;
+    color: rgb(201, 201, 202);
+    margin-bottom: 0px;
+}
+
+#main-tryangle{
+    border-color: transparent #ffffff transparent transparent;
+    border-style: solid;
+    border-width: 12px 18px 12px 12px;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 0px;
+    top: 30px;
+}
+
+#main-commentArea{
+    display: inline-block;
+    float: left;
+    background-color: #ffffff;
+    height: 255px;
+}
+
+#main-view{
+    padding: 20px;
+    padding-top: 15px;
+}
+
+#main-info{
+    display: inline-block;
+}
+
+#main-starArea{
+    display: inline-block;
+    float: left;
+}
+
+#main-starArea p{
+    font-size: 12pt;
+    color: rgb(136, 136, 137);
+}
+
+#main-star{
+    margin-top: -5px;
+}
+
+#main-star img{
+    width: 12px;
+    height: 12px;
+    margin-right: -3px;
+    margin-top: -1px;
+}
+
+#main-star span{
+    font-size: 8pt;
+    color: rgb(136, 136, 137);
+    margin-left: 10px;
+}
+
+#main-subContent, #main-subContent-add{
+    display: inline-block;
+    float: left;
+}
+
+#main-subContent p, #main-subContent-add p{
+    font-size: 8pt;
+    color: rgb(136, 136, 137);
+    margin-bottom: 2px;
+}
+
+#main-subContent{
+    margin-right: 10px;
+}
+
+.main-line{
+    background-color: rgb(218, 218, 217);
+    width: 1px;
+    height: 50px;
+    display: inline-block;
+    float: left;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+#main-contentBtn{
+    width: 110px;
+    height: 50px;
+    float: left;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgb(201, 201, 202);
+    text-align: center;
+    border-radius: 5px 5px 5px 5px;
+    display: table;
+}
+
+#main-contentBtn div{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#btn-icon{
+    color: rgb(201, 201, 202);
+}
+
+#btn-text{
+    margin-left: 3px;
+}
+
+#main-comment{
+    width: 100%;
+    background-color: rgb(241, 242, 243);
+    margin-top: 15px;
+    margin-bottom: 11px;
+}
+
+#comment-inputArea{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: -10px;
+    position: relative;
+}
+
+#comment-view{
+    padding: 10px;
+    padding-left: 15px;
+}
+
+#comment-textArea{
+    margin-left: 5px;
+}
+
+#comment-headText{
+    color: rgb(89, 87, 87);
+}
+
+#comment-subText{
+    color: rgb(136, 136, 137);
+    font-size: 8pt;
+}
+
+#comment-input{
+    display: inline-block;
+    float: left;
+}
+
+#comment-starArea{
+    display: inline-block;
+    float: left;
+    position: absolute;
+    top: 0px;
+}
+
+#comment-starArea img{
+    width: 13px;
+    height: 13px;
+    margin-right: -3px;
+    margin-top: -8px;
+}
+
+#comment-btn{
+    background-color: rgb(0, 158, 227);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 5px 5px 5px 5px;
+    display: table;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 35px;
+}
+
+#comment-btn:hover{
+    background-color: rgb(3, 110, 184);
+    cursor: pointer;
+}
+
+#comment-btn div{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#comment-btnIcon{
+    font-size: 11px;
+}
+
+#comment-btnText{
+    font-size: 12px;
+}
+
+#main-widthline{
+    width: auto;
+    height: 1px;
+    background-color: rgb(218, 218, 217);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#main-tagArea{
+    margin-left: -5px;
+    padding-top: 1px;
+    display: inline-block;
+    float: left;
+}
+
+.main-tagItem{
+    color: #ffffff;
+    display: inline;
+    float: left;
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgb(0, 158, 227);
+    margin-left: 5px;
+}
+
+.main-tagItem p{
+    font-size: 7pt;
+    padding-top: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 2px;
+    margin-bottom: 0px;
+}
+
+#main-countTextArea{
+    display: inline-block;
+    color: rgb(135, 135, 134);
+    font-size: 8pt;
+    margin-left: 20px;
+    float: left;
+    margin-top: 3px;
+}
+
+#countText{
+    color: rgb(0, 158, 227);
+    margin-left: 3px;
+}
+
+#countText-content{
+    margin-left: -3px;
+}
+
+.comment-listArea{
+    background-color: #ffffff;
+    margin-bottom: 100px;
+    border: 1px solid rgb(218, 218, 217);
+    border-top: none;
+}
+
+.comment-listView{
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#comment-listItem{
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+#comment-listContent{
+    display: inline-block;
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+#comment-listText{
+    margin-top: 12px;
+    margin-bottom: -5px;
+    color: #878786;
+    font-size: 10pt;
+}
+
+#comment-listBtnArea{
+    display: inline-block;
+    margin-bottom: -10px;
+}
+
+.comment-listBtn{
+    font-size: 7pt;
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+    color: rgb(73, 113, 176);
+}
+
+.comment-listBtn:hover{
+    cursor: pointer;
+}
+
+.comment-listBtnIcon{
+    padding-right: 2px;
+    top: 2px;
+}
+
+.badge{
+    font-size: 7pt;
+}
+
+#comment-listDeleteBtn{
+    background-color: rgb(229, 0, 17);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 5px 5px 5px 5px;
+    position: absolute;
+    bottom: 10px;
+    right: 0px;
+    font-size: 8pt;
+    width: 55px;
+    height: 26px;
+}
+
+#comment-listDeleteBtn:hover{
+    cursor: pointer;
+}
+
+#comment-listDeleteBtn p{
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+
+.comment-listLine{
+    display: inline-block;
+    height: 1px;
+    width: 100%;
+    background-color: rgb(218, 218, 217);
+}
+
+.comment-listAddBtn{
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    color: #595757;
+    background-color: rgb(239, 237, 232);
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid rgb(218, 218, 217);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.comment-listAddBtn:hover{
+    cursor: pointer;
+}
+
+.comment-listAddBtn p{
+    margin-bottom: 0px;
+    margin-top: 3px;
+}
+
+
+
+

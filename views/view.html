@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>한강, 한양대학교 익명 강의평가 사이트</title>
+
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="/stylesheets/navbar.css" rel="stylesheet">
+    <link href="/stylesheets/font.css" rel="stylesheet">
+    <link href="/stylesheets/content.css" rel="stylesheet">
+    <link href="/stylesheets/view.css" rel="stylesheet">
+
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/view.js"></script>
+    <script src="/javascripts/navbar.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body style="min-width: 992px; background-color: rgb(241, 242, 243);">
+    <div id="container">
+        <div id="navbar-container" class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">새강의평</a></li>
+                    <li><a href="/cheat">족보찾기</a></li>
+                    <li><a href="/estimation">평가검색</a></li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" id="search-form" class="form-control" placeholder="교수 or 과목을 입력해주세요">
+                    </div>
+                    <button type="submit" class="btn btn-default" id="search-button">
+                        <span class="glyphicon glyphicon-search" style="color: white"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="content-container">
+            <div class="container">
+                <div id="content-textArea">
+                    <span id="content-headText"><strong>평가하기</strong></span>
+                    <span id="content-subText">수강한 강의를 익명으로 평가할 수 있습니다</span>
+                </div>
+                <div id="content-mainArea">
+                    <div id="main-imgArea">
+                        <img src="/images/professor/<%= data[0].professor%>.jpg">
+                        <div id="main-textArea">
+                            <div id="main-textView">
+                                <p id="main-headText"><%= data[0].name %></p>
+                                <p id="main-subText"><%= data[0].professor + " 교수" %></p>
+                            </div>
+                        </div>
+                        <div id="main-tryangle"></div>
+                    </div>
+                    <div id="main-commentArea">
+                        <div id="main-view">
+                            <div id="main-info">
+                                <div id="main-starArea">
+                                    <p>평균 별점</p>
+                                    <div id="main-star">
+                                        <% for (var i = 1 ; i <= Math.floor(data[0].rate) ; i++){ %>
+                                        <img src="/images/star_enable.png">
+                                        <% } %>
+                                        <% for (var i = Math.floor(data[0].rate) + 1 ; i <= 5 ; i++){ %>
+                                        <img src="/images/star_disenable.png">
+                                        <% } %>
+                                        <span><%= Math.floor(data[0].rate) %> / 5</span>
+                                    </div>
+                                </div>
+                                <div class="main-line"></div>
+                                <div id="main-subContent">
+                                    <p>종합점수</p>
+                                    <p>학수번호</p>
+                                    <p>수업번호</p>
+                                </div>
+                                <div id="main-subContent-add">
+                                    <p><%= data[0].total_point %></p>
+                                    <p><%= data[0].number %></p>
+                                    <p class="class_num_text"><%= data[0].class_number %></p>
+                                </div>
+                                <div class="main-line"></div>
+                                <div id="main-contentBtn">
+                                    <div>
+                                        <span id="btn-icon" class="glyphicon glyphicon-align-justify"></span>
+                                        <span id="btn-text">강의내용</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="main-comment">
+                                <div id="comment-view">
+                                    <div id="comment-textArea">
+                                        <span id="comment-headText"><strong>평가하기</span>
+                                        <span id="comment-subText">(모든 내용은 익명으로 기록되며 관리자 또한 확인할 수 없습니다)</span>
+                                    </div>
+                                    <div id="comment-inputArea">
+                                        <div class="col-lg-10 col-md-10 col-sm-10">
+                                            <textarea id="comment-input" class="form-control" rows="2"></textarea>
+                                        </div>
+                                        <div id="comment-starArea">
+                                            <img src="/images/star_disenable.png">
+                                            <img src="/images/star_disenable.png">
+                                            <img src="/images/star_disenable.png">
+                                            <img src="/images/star_disenable.png">
+                                            <img src="/images/star_disenable.png">
+                                        </div>
+                                        <div id="comment-btn" class="col-lg-2 col-md-2 col-sm-2">
+                                            <div>
+                                                <span id="comment-btnIcon" class="glyphicon glyphicon-check" style="color: white"></span>
+                                                <span id="comment-btnText">평가하기</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="main-widthline"></div>
+                            <div id="main-tagArea">
+                                <div class="main-tagItem"><p>건축학부</p></div>
+                                <div class="main-tagItem"><p>3학점</p></div>
+                                <div class="main-tagItem"><p>전공필수</p></div>
+                            </div>
+                            <div id="main-countTextArea">
+                                <span id="countIcon">
+                                    <span class="glyphicon glyphicon-edit" style="color: rgb(87, 86, 86);"></span>
+                                </span>
+                                <span id="countText"><strong><%= data[0].comment_count %></strong></span>
+                                <span id="countText-content">개의 댓글이 달려있습니다.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="comment-container">
+                    <ul class="nav nav-tabs" id="comment-tab">
+                        <li><a href="#best" alt="best" data-toggle="tab">베스트</a></li>
+                        <li><a href="#newest" alt="newest" data-toggle="tab">최신순</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane comment-listArea" id="best">
+                            <div class="comment-listView">
+                                <div class="comment-listWrap"></div>
+                                <div class='comment-listBtnWrap'>
+                                    <div class="comment-listAddBtn" alt="best"><p>더보기</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane comment-listArea" id="newest">
+                            <div class="comment-listView">
+                                <div class="comment-listWrap"></div>
+                                <div class='comment-listBtnWrap'>
+                                    <div class="comment-listAddBtn" alt="newest"><p>더보기</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+

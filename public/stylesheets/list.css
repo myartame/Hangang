@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+#content-listArea{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.content-listItem{
+    background-color: #ffffff;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid rgb(218, 218, 217);
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+}
+
+.content-listCheatItem{
+    background-color: #ffffff;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid rgb(218, 218, 217);
+    display: inline-block;
+    width: 100%;
+    position: relative;
+}
+
+.content-listItem:hover{
+    border: 1px solid rgb(0, 158, 227);
+    cursor: pointer;
+}
+
+.content-listItem img, .content-listCheatItem img{
+    border-radius: 5px 0px 0px 5px;
+    float: left;
+}
+
+.list-professorImg{
+    width: 100px;
+    height: 125px;
+}
+
+.list-content{
+    display: inline;
+    float: left;
+    width: 80%;
+}
+
+.list-line{
+    width: auto;
+    height: 1px;
+    background-color: rgb(218, 218, 217);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.list-bottomLine{
+    width: auto;
+    height: 1px;
+    background-color: rgb(218, 218, 217);
+    margin-top: 18px;
+    margin-bottom: 5px;
+}
+
+.list-content{
+    padding-top: 5px;
+    padding-left: 15px;
+    margin-bottom: 7px;
+}
+
+.list-headText{
+    font-size: 12pt;
+    color: rgb(87, 86, 86);
+}
+
+.list-subText{
+    font-size: 8pt;
+    color: rgb(135, 135, 134);
+    margin-left: 4px;
+}
+
+.list-contentText{
+    font-size: 10pt;
+    color: rgb(135, 135, 134);
+}
+
+.list-starArea img{
+    padding-top: 5px;
+    display: block;
+}
+
+.list-starText{
+    font-size: 8pt;
+    color: rgb(135, 135, 134);
+    margin-left: 8px;
+}
+
+.list-tagArea{
+    margin-left: -5px;
+    padding-top: 1px;
+}
+
+.list-tagItem{
+    color: #ffffff;
+    display: inline;
+    float: left;
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgb(0, 158, 227);
+    margin-left: 5px;
+}
+
+.list-tagItem p{
+    font-size: 7pt;
+    padding-top: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 2px;
+    margin-bottom: 0px;
+}
