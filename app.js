@@ -18,7 +18,7 @@ var cheat = require('./routes/cheat');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 15001);
+app.set('port', process.env.PORT || 80);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
@@ -55,7 +55,7 @@ var server = http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
 
-server.listen(15001);
+server.listen(80);
 var io = socketio.listen(server);
 io.set('log level', 2);
 io.sockets.on('connection', function(socket){
