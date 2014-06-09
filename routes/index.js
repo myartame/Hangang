@@ -7,12 +7,13 @@ exports.index = function(req, res){
     var callback;
     if (req.query.event == "get"){
         sql = db.makeQueryString("SELECT * FROM comment ORDER BY id DESC LIMIT {0}, 5",
-            [ user.getCommentCount("newest") ]);
-        user.addCommentCount("newest");
+            [ req.session.newCommentCount ]);
+        req.session.newCommentCount += 5;
     }
     else if (req.query.event == "data") {
         sql = db.makeQueryString('SELECT * FROM lecture WHERE class_number = {0}',
             [ req.query.class_number ]);
+        console.log(sql)
     }
     else if (req.query.event == "mail"){
         sql = db.makeQueryString("SELECT * FROM user WHERE email = {0}", [ req.query.email ]);
@@ -35,7 +36,7 @@ exports.index = function(req, res){
         db.get(res, sql, callback);
     }
     else{
-        user.initCommentCount();
         res.render("index.html");
+        req.session.newCommentCount = 0;
     }
 };

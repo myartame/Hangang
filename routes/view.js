@@ -2,7 +2,6 @@
  * Created by add2paper on 2014. 4. 15..
  */
 var db = require('./modules/db');
-var user = require('./modules/user').getInstance();
 var mail = require('./modules/mail');
 
 exports.index = function(req, res){
@@ -23,7 +22,8 @@ exports.index = function(req, res){
         }
     }
     else{
-        user.initCommentCount();
+        req.session.newCommentCount = 0;
+        req.session.bestCommentCount = 0;
 
         var query = db.makeQueryString('SELECT * FROM lecture WHERE class_number = {0}', [req.query.class_number]);
         db.get(res, query, function(error, result){
@@ -37,7 +37,7 @@ exports.index = function(req, res){
 exports.input = function(req, res){
     db.get(res, db.makeQueryString('INSERT INTO comment (email, content, class_number, ' +
         'rate, like_count, dis_count) VALUES ({0}, {1}, {2}, {3}, 0, 0)',
-        [ user.getEmail() || '', req.body.content, req.body.class_num, req.body.rate ]), function(error, result){
+        [ req.session.user_id || '', req.body.content, req.body.class_num, req.body.rate ]), function(error, result){
             if (error == null){
                 db.get(res, "UPDATE lecture SET comment_count = comment_count + 1, rate = ((rate * comment_count) + "
                   + req.body.rate + ") / (comment_count + 1) WHERE class_number = " + req.body.class_num);
@@ -45,17 +45,17 @@ exports.input = function(req, res){
             });
 }
 
-function getComment(res, query){
+function getComment(req, res, query){
     var sql = "SELECT * FROM comment WHERE class_number = " + query.class_num;
     if (query.flag == "best") {
         sql += " ORDER BY like_count DESC";
-        sql += " LIMIT " + user.getCommentCount("best") + ", " + 5;
-        user.addCommentCount("best");
+        sql += " LIMIT " + req.session.bestCommentCount + ", " + 5;
+        req.session.bestCommentCount += 5;
     }
     else {
         sql += " ORDER BY id DESC";
-        sql += " LIMIT " + user.getCommentCount("newest") + ", " + 5;
-        user.addCommentCount("newest");
+        sql += " LIMIT " + req.session.newCommentCount + ", " + 5;
+        req.session.bestCommentCount += 5;
     }
     db.get(res, sql);
 }

@@ -1,6 +1,6 @@
 /**
  * Created by JP on 2014. 1. 4..
- */
+ */ 
 
 const CONTENT_MAX = 43;
 

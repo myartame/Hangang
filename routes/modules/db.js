@@ -25,6 +25,6 @@ exports.makeQueryString = function(sql, values){
         makesql = makesql.replace('{' + i + '}', mysql.escape(values[i]));
     }
     // 서비스 오픈 때 주석 풀기
-    //console.log(makesql);
+    //console.log("SQL : " + makesql);
     return makesql;
 }

@@ -3,11 +3,11 @@
  */
 
 var db = require('./modules/db');
-var user = require('./modules/user').getInstance();
 var mail = require('./modules/mail');
+var SHA256 = require("crypto-js/sha256");
 
 exports.loginCheck = function(req, res, next){
-    if (user.getEmail() != ''){
+    if (req.session.user_id != undefined){
         next();
     }
     else {
@@ -16,14 +16,14 @@ exports.loginCheck = function(req, res, next){
 }
 
 exports.login = function(req, res){
-    if (user.getEmail() != ''){
+    if (req.session.user_id != undefined){
         res.send(200, { flag : true });
     }
     else {
         db.get(res, db.makeQueryString("SELECT * FROM user WHERE email = {0} AND password = {1}",
-            [ req.body.email, req.body.password ]), function(error, result){
+            [ req.body.email, JSON.stringify(SHA256(req.body.password).words) ]), function(error, result){
             if (error == null && result.length != 0){
-                user.setEmail(req.query.email);
+                req.session.user_id = req.body.email;
                 res.send(200, { flag : true });
             }
             else{
@@ -35,14 +35,12 @@ exports.login = function(req, res){
 
 exports.join = function(req, res){
     db.get(res, db.makeQueryString('INSERT INTO user (email, password) VALUES ' +
-        '({0}, {1})', [ req.query.email, req.query.password ]), function(error, result){
+        '({0}, {1})', [ req.query.email, JSON.stringify(SHA256(req.query.password).words) ]), function(error, result){
         if (error == null){
-            res.render("index.html");
+            req.session.user_id = req.query.email;
         }
-        else {
-            res.render("index.html");
-        }
-    })
+        res.redirect('/');
+    });
 }
 
 exports.mail = function(req, res){
@@ -53,12 +51,12 @@ exports.mail = function(req, res){
             mail.send({
                 to : req.body.email + "@hanyang.ac.kr",
                 subject : "한강 가입 인증 메일입니다.",
-                html : '<a href="' + url + '">' + url + '</a>'
+                html : '<a href="' + url + '">' + "클릭하시면 회원가입이 완료됩니다!" + '</a>'
             });
             res.send(200, { flag : true });
         }
         else{
             res.send(500, { flag : false });
         }
-    })
+    });
 }

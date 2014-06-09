@@ -3,27 +3,36 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var routes = require('./routes');
-var http = require('http');
-var path = require('path');
-var socketio = require('socket.io');
+var express      = require('express');
+var routes       = require('./routes');
+var http         = require('http');
+var path         = require('path');
+var socketio     = require('socket.io');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
 
-var userMgr = require('./routes/userMgr');
-var estimation = require('./routes/estimation');
-var view = require('./routes/view');
-var join = require('./routes/join');
-var cheat = require('./routes/cheat');
+var userMgr      = require('./routes/userMgr');
+var estimation   = require('./routes/estimation');
+var view         = require('./routes/view');
+var join         = require('./routes/join');
+var cheat        = require('./routes/cheat');
 
-var app = express();
+var app          = express();
+
+const port       = 3000;
 
 // all environments
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || port);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
 app.use(express.bodyParser());
+
+app.use(cookieParser()) // required before session.
+app.use(session({
+    secret: '핫핫'
+}));
 
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -47,6 +56,7 @@ app.get('/estimation', /*userMgr.loginCheck,*/ estimation.index);
 app.get('/view', /*userMgr.loginCheck,*/ view.index);
 app.get('/cheat', cheat.index);
 app.get('/cheat/download', cheat.download);
+app.get('/join', userMgr.join);
 
 app.post('/view', view.input);
 app.post('/cheat/upload', cheat.upload);
@@ -55,7 +65,7 @@ var server = http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
 
-server.listen(80);
+server.listen(port);
 var io = socketio.listen(server);
 io.set('log level', 2);
 io.sockets.on('connection', function(socket){

@@ -7,7 +7,6 @@ exports.index = function(req, res){
         (req.query.process != "과정 구분" && req.query.process != undefined ? db.makeQueryString("AND process LIKE {0} ", ['%' + req.query.process + '%']) : '');
 
     db.get(res, sql, function(error, result){
-            console.log(result)
             if (error == null){
                 res.render('estimationview.html', { data: result });
             }
