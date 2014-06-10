@@ -25,20 +25,20 @@ $(document).ready(function(){
     setInterval(function(){
         if (input_array.length){
             var data = input_array.pop();
-            listItemAdd(data.class_num, data.content);
+            listItemAdd(data.lecture_id, data.content, data.rate);
             $('.content-listItem').stop(true, true).animate({ 'top': '+=130' }, 1000);
         }
     }, 1500);
 
     $(document).on('click', '.content-listItem', function(){
-        location.replace('/view?class_number=' + $(this).attr('alt') + "&flag=best");
+        location.replace('/view?lecture_id=' + $(this).attr('alt') + "&flag=best");
     });
 });
 
 function listAdd(){
     $.get("?event=get", function(data){
         JSON.parse(data).forEach(function(comment_data, index){
-            $.get("?event=data&class_number=" + comment_data.class_number, function(db_data){
+            $.get("?event=data&lecture_id=" + comment_data.lecture_id, function(db_data){
                 var tagData = JSON.parse(db_data)[0];
                 var starTag = "";
 
@@ -53,7 +53,7 @@ function listAdd(){
 
                 var content = comment_data.content.length >= CONTENT_MAX ? comment_data.content.substr(0, CONTENT_MAX - 1) + '...' : comment_data.content;
                 
-                var tag = '<div class="content-listItem" style="top:' + list_position + 'px;" alt="' + comment_data.class_number + '"><img class="list-professorImg" src="/images/professor/' + tagData.professor + '.jpg"><div class="list-content">' +
+                var tag = '<div class="content-listItem" style="top:' + list_position + 'px;" alt="' + comment_data.lecture_id + '"><img class="list-professorImg" src="/images/professor/' + tagData.professor + '.jpg"><div class="list-content">' +
                     '<span class="list-headText"><strong>' + tagData.name + '</strong></span><span class="list-subText">' +
                     tagData.professor + ' 교수님' + '</span><div class="list-line"></div><p class="list-contentText">' + content +
                     '</p><div class="list-starArea">' + starTag + '</div><div class="list-line"></div><div class="list-tagArea">' +
@@ -66,12 +66,12 @@ function listAdd(){
     });
 }
 
-function listItemAdd(class_number, content){
-    $.get("?event=data&class_number=" + class_number, function(db_data){
+function listItemAdd(lecture_id, content, comment_rate){
+    $.get("?event=data&lecture_id=" + lecture_id, function(db_data){
         var tagData = JSON.parse(db_data)[0];
         var starTag = "";
 
-        var rate = Math.floor(tagData.rate);
+        var rate = Math.floor(comment_rate);
         for (var i = 1 ; i <= rate ; i++){
             starTag += '<img src="/images/star_enable.png">';
         }
@@ -82,7 +82,7 @@ function listItemAdd(class_number, content){
 
         var _content = content.length >= CONTENT_MAX ? content.substr(0, CONTENT_MAX - 1) + '...' : content;
 
-        var tag = '<div class="content-listItem content-newListItem" style="top: 0px;" alt="' + class_number + '">' +
+        var tag = '<div class="content-listItem content-newListItem" style="top: 0px;" alt="' + lecture_id + '">' +
             '<img class="list-professorImg" src="/images/professor/' + tagData.professor + '.jpg"><div class="list-content">' +
             '<span class="list-headText"><strong>' + tagData.name + '</strong></span><span class="list-subText">' +
             tagData.professor + ' 교수님' + '</span><div class="list-line"></div><p class="list-contentText">' + _content +

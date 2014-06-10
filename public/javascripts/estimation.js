@@ -21,8 +21,8 @@ $(document).ready(function(){
     });
 
     $('.content-item').click(function(){
-        var alt_text = $(this).attr("alt");
-        location.replace('/view?class_number=' + alt_text);
+        location.replace('/view?lecture_id=' + $(this).attr("alt") +
+            "&flag=best");
     });
 
     $('#form-search').keydown(function(event){

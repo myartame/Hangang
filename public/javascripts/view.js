@@ -31,8 +31,8 @@ $(document).ready(function(){
                     star_rate++;
             }
             var input_data = {
+                lecture_id: $('#professor-img').attr('alt'),
                 content: $('#comment-input').val(),
-                class_num: $('.class_num_text').text(),
                 rate: star_rate
             }
             $.ajax({
@@ -43,7 +43,7 @@ $(document).ready(function(){
                 success : function(data){
                     socket.emit('input', input_data);
                     alert("평가해주셔서 감사합니다!");
-                    location.replace("/view?class_number=" + $('.class_num_text').text() + "&flag=newest");
+                    location.replace("view?lecture_id=" + input_data.lecture_id + "&flag=newest");
                 }
             });
         }
@@ -82,7 +82,7 @@ function setImgTextCenter(){
 }
 
 function setCommentView(value){
-    $.get("?event=get&class_num=" + $(".class_num_text").text() + "&flag=" + value, function(data){
+    $.get("?event=get&lecture_id=" + $("#professor-img").attr('alt') + "&flag=" + value, function(data){
         if (JSON.parse(data).length != 0){
             JSON.parse(data).forEach(function(item){
                 var starTag = "";

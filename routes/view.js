@@ -6,7 +6,7 @@ var mail = require('./modules/mail');
 
 exports.index = function(req, res){
     if (req.query.event == "get"){
-        getComment(res, req.query);
+        getComment(req, res);
     }
     else if (req.query.event == "like"){
         likeClickListener(req, res);
@@ -25,29 +25,32 @@ exports.index = function(req, res){
         req.session.newCommentCount = 0;
         req.session.bestCommentCount = 0;
 
-        var query = db.makeQueryString('SELECT * FROM lecture WHERE class_number = {0}', [req.query.class_number]);
-        db.get(res, query, function(error, result){
-            var view_data = (error == null) ? result : {};
-            view_data[0]['flag'] = req.query.flag;
+        db.get(res, 'SELECT * FROM lecture WHERE id = ' + req.query.lecture_id, function(error, result){
+            var view_data = view_data || {};
+            if (error == null){
+                view_data = result;
+                view_data[0]['flag'] = req.query.flag;
+            }
             res.render("view.html", { data: view_data });
         });
     }
 }
 
 exports.input = function(req, res){
-    db.get(res, db.makeQueryString('INSERT INTO comment (email, content, class_number, ' +
-        'rate, like_count, dis_count) VALUES ({0}, {1}, {2}, {3}, 0, 0)',
-        [ req.session.user_id || '', req.body.content, req.body.class_num, req.body.rate ]), function(error, result){
+    db.get(res, db.makeQueryString('INSERT INTO comment (email, content, lecture_id, rate, like_count, dis_count) VALUES ({0}, {1}, {2}, {3}, 0, 0)',
+        [ req.session.user_id || '', req.body.content, req.body.lecture_id, req.body.rate ]), function(error, result){
             if (error == null){
-                db.get(res, "UPDATE lecture SET comment_count = comment_count + 1, rate = ((rate * comment_count) + "
-                  + req.body.rate + ") / (comment_count + 1) WHERE class_number = " + req.body.class_num);
-                }
-            });
+                var sql = db.makeQueryString("UPDATE lecture SET rate = ((rate * comment_count) + "
+                    + req.body.rate + ") / (comment_count + 1), comment_count = comment_count + 1 WHERE " +
+                    "id = {0}", [ req.body.lecture_id ]);
+                db.get(res, sql);
+            }
+        });
 }
 
-function getComment(req, res, query){
-    var sql = "SELECT * FROM comment WHERE class_number = " + query.class_num;
-    if (query.flag == "best") {
+function getComment(req, res){
+    var sql = db.makeQueryString("SELECT * FROM comment WHERE lecture_id = {0}", [ req.query.lecture_id ]);
+    if (req.query.flag == "best") {
         sql += " ORDER BY like_count DESC";
         sql += " LIMIT " + req.session.bestCommentCount + ", " + 5;
         req.session.bestCommentCount += 5;

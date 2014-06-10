@@ -56,7 +56,7 @@
                 </div>
                 <div id="content-mainArea">
                     <div id="main-imgArea">
-                        <img src="/images/professor/<%= data[0].professor%>.jpg">
+                        <img id="professor-img" src="/images/professor/<%= data[0].professor%>.jpg" alt="<%= data[0].id %>">
                         <div id="main-textArea">
                             <div id="main-textView">
                                 <p id="main-headText"><%= data[0].name %></p>
@@ -83,12 +83,12 @@
                                 <div class="main-line"></div>
                                 <div id="main-subContent">
                                     <p>종합점수</p>
-                                    <p>학수번호</p>
                                     <p>수업번호</p>
+                                    <p>학수번호</p>
                                 </div>
                                 <div id="main-subContent-add">
                                     <p><%= data[0].total_point %></p>
-                                    <p><%= data[0].number %></p>
+                                    <p class="num-text"><%= data[0].number %></p>
                                     <p class="class_num_text"><%= data[0].class_number %></p>
                                 </div>
                                 <div class="main-line"></div>

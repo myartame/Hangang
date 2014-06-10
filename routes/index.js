@@ -11,9 +11,7 @@ exports.index = function(req, res){
         req.session.newCommentCount += 5;
     }
     else if (req.query.event == "data") {
-        sql = db.makeQueryString('SELECT * FROM lecture WHERE class_number = {0}',
-            [ req.query.class_number ]);
-        console.log(sql)
+        sql = 'SELECT * FROM lecture WHERE id = ' + req.query.lecture_id;
     }
     else if (req.query.event == "mail"){
         sql = db.makeQueryString("SELECT * FROM user WHERE email = {0}", [ req.query.email ]);
