@@ -33,6 +33,10 @@ $(document).ready(function(){
     $(document).on('click', '.content-listItem', function(){
         location.replace('/view?lecture_id=' + $(this).attr('alt') + "&flag=best");
     });
+
+    if (document.URL.split("login=")[1] == "false"){
+        alert("권한이 없습니다! 로그인 해주세요.");
+    }
 });
 
 function listAdd(){

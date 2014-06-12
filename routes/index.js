@@ -1,5 +1,4 @@
 var db = require('./modules/db');
-var user = require('./modules/user').getInstance();
 var mail = require('./modules/mail');
 
 exports.index = function(req, res){

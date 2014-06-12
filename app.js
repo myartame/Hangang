@@ -19,7 +19,7 @@ var cheat        = require('./routes/cheat');
 
 var app          = express();
 
-const port       = 3000;
+const port       = 80;
 
 // all environments
 app.set('port', process.env.PORT || port);
@@ -52,9 +52,9 @@ app.post('/login', userMgr.login);
 app.post('/mail', userMgr.mail);
 
 app.get('/', routes.index);
-app.get('/estimation', /*userMgr.loginCheck,*/ estimation.index);
-app.get('/view', /*userMgr.loginCheck,*/ view.index);
-app.get('/cheat', cheat.index);
+app.get('/estimation', userMgr.loginCheck, estimation.index);
+app.get('/view', userMgr.loginCheck, view.index);
+app.get('/cheat', userMgr.loginCheck, cheat.index);
 app.get('/cheat/download', cheat.download);
 app.get('/join', userMgr.join);
 

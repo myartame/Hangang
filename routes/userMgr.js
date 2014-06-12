@@ -11,7 +11,7 @@ exports.loginCheck = function(req, res, next){
         next();
     }
     else {
-        res.redirect('/');
+        res.redirect('/?login=false');
     }
 }
 

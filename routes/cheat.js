@@ -4,7 +4,6 @@
 
 var fs = require('fs');
 var db = require('./modules/db');
-var user = require('./modules/user').getInstance();
 
 exports.index = function(req, res){
     var sql = "SELECT * FROM cheat " + (req.query.value == null ? "ORDER BY id DESC" :
