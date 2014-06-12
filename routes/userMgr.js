@@ -44,19 +44,19 @@ exports.join = function(req, res){
 }
 
 exports.mail = function(req, res){
-    db.get(res, db.makeQueryString("SELECT * FROM user WHERE id = {0} AND password = {1}",
-        [ req.body.email, req.body.password ]), function(error, result){
+    db.get(res, db.makeQueryString("SELECT * FROM user WHERE email = {0}",
+        [ req.body.email ]), function(error, result){
         if(error == null && result.length == 0){
-            var url = "http://127.0.0.1:3000/join?email=" + req.body.email + "&password=" + req.body.password;
+            var url = require('./modules/common').get().url + "/join?email=" + req.body.email + "&password=" + req.body.password;
             mail.send({
                 to : req.body.email + "@hanyang.ac.kr",
-                subject : "한강 가입 인증 메일입니다.",
+                subject : "한학기 가입 인증 메일입니다.",
                 html : '<a href="' + url + '">' + "클릭하시면 회원가입이 완료됩니다!" + '</a>'
             });
             res.send(200, { flag : true });
         }
         else{
-            res.send(500, { flag : false });
+            res.send(200, { flag : false });
         }
     });
 }

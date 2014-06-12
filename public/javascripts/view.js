@@ -92,11 +92,10 @@ function setCommentView(value){
                 for (var i = Math.floor(item.rate) + 1 ; i <= 5 ; i++){
                     starTag += '<img src="/images/star_disenable.png">';
                 }
-
                 var tag = '<div id="comment-listItem"><div id="comment-listContent"><div id="comment-listStar">' + starTag +
                     '</div><p id="comment-listText">' + item.content + '</p><div id="comment-listBtnArea"><div class="comment-listBtn likeBtn" alt="' + item.id +'">' +
                     '<span class="glyphicon glyphicon-thumbs-up comment-listBtnIcon"></span>좋아요<span class="badge">' + item.like_count + '</span></div>' +
-                    '<div class="comment-listBtn disBtn"><span class="glyphicon glyphicon-thumbs-up comment-listBtnIcon"></span>이 평가를 신고합니다</div>' +
+                    '<div class="comment-listBtn disBtn" alt="' + item.id +'"><span class="glyphicon glyphicon-thumbs-up comment-listBtnIcon"></span>이 평가를 신고합니다</div>' +
                     '</div><div class="comment-listLine"></div></div></div>';
                 $('#' + value + ' .comment-listWrap').append(tag);
             });

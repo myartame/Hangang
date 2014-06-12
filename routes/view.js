@@ -14,7 +14,7 @@ exports.index = function(req, res){
     else if (req.query.event == "dis"){
         if (req.query.id != '' && req.query.content != ''){
             mail.send({
-                to : "myartame@gmail.com",
+                to : "hyurecord@gmail.com",
                 subject : "평가 신고",
                 text : "id = " + req.query.id + ", content : " + req.query.content,
             });

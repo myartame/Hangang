@@ -14,15 +14,12 @@ var session      = require('express-session');
 var userMgr      = require('./routes/userMgr');
 var estimation   = require('./routes/estimation');
 var view         = require('./routes/view');
-var join         = require('./routes/join');
 var cheat        = require('./routes/cheat');
 
 var app          = express();
 
-const port       = 80;
-
 // all environments
-app.set('port', process.env.PORT || port);
+app.set('port', process.env.PORT || require('./routes/modules/common').get().port);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
@@ -65,7 +62,7 @@ var server = http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
 
-server.listen(port);
+server.listen(require('./routes/modules/common').port);
 var io = socketio.listen(server);
 io.set('log level', 2);
 io.sockets.on('connection', function(socket){

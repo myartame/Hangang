@@ -2,7 +2,7 @@
  * Created by JP on 2014. 1. 4..
  */ 
 
-const CONTENT_MAX = 43;
+const CONTENT_MAX = 55;
 
 var list_position = 0;
 var input_array = new Array();
@@ -31,7 +31,7 @@ $(document).ready(function(){
     }, 1500);
 
     $(document).on('click', '.content-listItem', function(){
-        location.replace('/view?lecture_id=' + $(this).attr('alt') + "&flag=best");
+        location.href = '/view?lecture_id=' + $(this).attr('alt') + "&flag=best";
     });
 
     if (document.URL.split("login=")[1] == "false"){

@@ -21,8 +21,8 @@ $(document).ready(function(){
     });
 
     $('.content-item').click(function(){
-        location.replace('/view?lecture_id=' + $(this).attr("alt") +
-            "&flag=best");
+        location.href = '/view?lecture_id=' + $(this).attr("alt") +
+            "&flag=best";
     });
 
     $('#form-search').keydown(function(event){
