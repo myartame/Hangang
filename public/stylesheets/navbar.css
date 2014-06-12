@@ -5,7 +5,7 @@
 }
 
 .navbar-nav a{
-    margin-top: 13px;
+    margin-top: 25px;
 }
 
 .navbar-brand img{
@@ -16,11 +16,8 @@
     padding-left: 60px;
 }
 
-.navbar-nav li{
-}
-
 #search-form{
-    margin-top: 14px;
+    margin-top: 26px;
     border-radius: 4px 0px 0px 4px;
     width: 250px;
     font-size: 9pt;
@@ -39,7 +36,7 @@
     border-radius: 0px 4px 4px 0px;
     width: 40px;
     height: 34px;
-    margin-top: 14px;
+    margin-top: 26px;
     margin-left: -5px;
     margin-right: 50px;
 }
@@ -67,7 +64,7 @@
 }
 
 .navbar-inputArea{
-    margin-top: 17px;
+    margin-top: 22px;
 }
 
 .navbar-idText{
@@ -123,7 +120,7 @@
 }
 
 #navbar-btnArea{
-    margin-top: 25px;
+    margin-top: 35px;
     float: left;
 }
 

@@ -24,6 +24,7 @@ exports.index = function(req, res){
     else{
         req.session.newCommentCount = 0;
         req.session.bestCommentCount = 0;
+        likeStackInit(req, res);
 
         db.get(res, 'SELECT * FROM lecture WHERE id = ' + req.query.lecture_id, function(error, result){
             var view_data = view_data || {};
@@ -58,29 +59,32 @@ function getComment(req, res){
     else {
         sql += " ORDER BY id DESC";
         sql += " LIMIT " + req.session.newCommentCount + ", " + 5;
-        req.session.bestCommentCount += 5;
+        req.session.newCommentCount += 5;
     }
     db.get(res, sql);
 }
 
-function likeClickListener(req, res){
-    var comment_id = parseInt(req.query.id);
-
-    if (user.getLikeStackLength() == 0) {
-        db.get(res, db.makeQueryString("SELECT * FROM user_like WHERE email = {0}", [ /*user.getEmail()*/ "myartame" ]),
-            function (error, result) {
-                if (error == null) {
-                    for (var i in result) {
-                        user.likeCheckID(result[i].comment_id);
+function likeStackInit(req, res){
+    if (req.session.likeStack == undefined){
+        req.session.likeStack = new Array();
+        db.get(res, db.makeQueryString("SELECT * FROM user_like WHERE email = {0}", [ /*req.session.user_id*/ "myartame" ]),
+            function(error, result){
+                if (error == null){
+                    for (var i in result){
+                        likeCheckID(req.session.likeStack, result[i].comment_id);
                     }
                 }
-            }
-        );
+            });
     }
+}
 
-    if(user.likeCheckID(comment_id)) {
+function likeClickListener(req, res){
+    if (req.session.likeStack == undefined) return;
+
+    var comment_id = parseInt(req.query.id);
+    if(likeCheckID(req.session.likeStack, comment_id)) {
         db.get(res, db.makeQueryString("INSERT INTO user_like (email, comment_id) VALUES ({0}, {1})",
-            [ /*user.getEmail()*/"myartame", req.query.id ]), function(){});
+            [ /*req.session.user_id*/"myartame", req.query.id ]), function(){});
     }
     else {
         res.send(200, { flag : false });
@@ -93,4 +97,15 @@ function likeClickListener(req, res){
             else { res.send(200, { flag : false }) }
         }
     );
+}
+
+function likeCheckID(likestack, like_id){
+    for (var i in likestack){
+        if (likestack[i] == like_id) {
+            return false;
+        }
+    }
+
+    likestack.push(like_id);
+    return true;
 }
