@@ -39,7 +39,7 @@
                 </ul>
                 <form class="navbar-form navbar-right" role="upload">
                     <button type="button" data-toggle="modal" data-target="#uploadModal" class="btn btn-default btn-lg" style="width:40px; margin-top:12px;">
-                        <span class="glyphicon glyphicon-plus"></span>
+                        <span id="plus-icon" class="glyphicon glyphicon-plus"></span>
                     </button>
                 </form>
             </div>
@@ -80,8 +80,9 @@
                             </div>
                         </div>
                         <div class="content-coverWrap">
-                            <div class="content-listCover"></div>
-                            <img class="content-downloadBtn" src="/images/download.svg">
+                            <div class="content-listCover">
+                                <img class="content-downloadBtn" src="/images/download.svg">
+                            </div>
                         </div>
                     </div>
                     <% }); %>
@@ -129,7 +130,6 @@
                                 </div>
                             </div>
                             <div class="modal-btn" id="uploadBtn"><div><div class="modal-btn-text" ><strong>업로드</strong></div></div></div>
-                            <!--<input id="modal-btn" type="submit" value="업로드" />-->
                         </form>
                     </div>
                     <div class="modal-footer">

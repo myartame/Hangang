@@ -24,7 +24,8 @@ exports.makeQueryString = function(sql, values){
     for (var i = 0 ; i < values.length ; i++){
         makesql = makesql.replace('{' + i + '}', mysql.escape(values[i]));
     }
-    // 서비스 오픈 때 주석 풀기
-    //console.log("SQL : " + makesql);
+
+    if (require('./common').get().debug)
+        console.log("SQL : " + makesql);
     return makesql;
 }

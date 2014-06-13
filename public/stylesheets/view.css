@@ -24,7 +24,7 @@
     background-color: rgba(0, 0, 0, 0.7);
     color: #ffffff;
     position: absolute;
-    bottom: 0px;
+    bottom: -10px;
 }
 
 #main-textView{

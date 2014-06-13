@@ -52,6 +52,7 @@ app.get('/', routes.index);
 app.get('/estimation', userMgr.loginCheck, estimation.index);
 app.get('/view', userMgr.loginCheck, view.index);
 app.get('/cheat', userMgr.loginCheck, cheat.index);
+app.get('/cheat/get', cheat.get);
 app.get('/cheat/download', cheat.download);
 app.get('/join', userMgr.join);
 

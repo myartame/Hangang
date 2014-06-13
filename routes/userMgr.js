@@ -7,11 +7,11 @@ var mail = require('./modules/mail');
 var SHA256 = require("crypto-js/sha256");
 
 exports.loginCheck = function(req, res, next){
-    if (req.session.user_id != undefined){
+    if (req.session.user_id != undefined || require('./modules/common').get().debug){
         next();
     }
     else {
-        res.redirect('/?login=false');
+        res.redirect('/?login=fail');
     }
 }
 
@@ -39,7 +39,7 @@ exports.join = function(req, res){
         if (error == null){
             req.session.user_id = req.query.email;
         }
-        res.redirect('/');
+        res.redirect('/?login=sucess');
     });
 }
 

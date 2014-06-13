@@ -6,7 +6,8 @@ $(document).ready(function(){
     $('#search-form').keydown(function(event){
         if (event.keyCode == 13){
             if ($(this).val() != ''){
-                location.href = '/estimation?name=' + SpaceRemove($(this).val());
+                alert(123)
+                location.href = '/estimation?name=' + $(this).val();
             }
             else
                 alert("교수 혹은 과목을 입력해주세요!");
@@ -15,7 +16,7 @@ $(document).ready(function(){
     });
     $('#search-button').click(function(){
         if ($('#search-form').val() != ''){
-            location.href = '/estimation?name=' + SpaceRemove($('#search-form').val());
+            location.href = '/estimation?name=' + $('#search-form').val();
         }
         else
             alert("교수 혹은 과목을 입력해주세요!");

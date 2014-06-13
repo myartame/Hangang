@@ -4,20 +4,26 @@
 	cursor: pointer;
 }
 
+#plus-icon{
+    margin-left: -3px;
+}
+
 .content-listCover{
     width: 100%;
     height: 100%;
     background-color: rgb(0, 0, 0);
-    opacity: 0;
     border-radius: 5px 5px 5px 5px;
     position: absolute;
     top: 0px;
+    opacity: 0;
+    transition: opacity .4s;
+    -moz-transition: opacity .4s;
+    -webkit-transition: opacity .4s;
 }
 
 .content-downloadBtn{
     position: absolute;
     margin-top: 24px;
-    opacity: 0;
     width: 80px;
     height: 80px;
     left: 45%;
@@ -32,4 +38,18 @@
     background-color: rgb(0, 158, 227);
     font-weight: bold;
     margin-left: 214px;
+}
+
+.content-listCover:hover{
+    opacity: 0.7;
+    transition: opacity .4s;
+    -moz-transition: opacity .4s;
+    -webkit-transition: opacity .4s;
+}
+
+.content-listCover:hover > .content-dowloadBtn{
+    opacity: 1;
+    transition: opacity .4s;
+    -moz-transition: opacity .4s;
+    -webkit-transition: opacity .4s;
 }

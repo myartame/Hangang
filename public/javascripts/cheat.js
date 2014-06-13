@@ -4,22 +4,22 @@ var inputAlertContext = [
 ];
 
 $(document).ready(function(){
-	$('.content-coverWrap').hover(function(){
+	/*$('.content-coverWrap').hover(function(){
         $(this).children('.content-listCover').stop(true, true).animate({"opacity": "0.7"}, 300);
         $(this).children('.content-downloadBtn').stop(true, true).animate({"opacity": "0.7"}, 300);
     }, function(){
         $(this).children('.content-listCover').stop(true, true).animate({"opacity": "0"}, 300)
         $(this).children('.content-downloadBtn').stop(true, true).animate({"opacity": "0"}, 300);
-    });
+    });*/
 
 	$('#uploadDialog').hide().change(function() { 
 		$('#uploadLargeInput').val($(this).val().split('\\').pop());
 	});
 
-	$('.content-listCheatItem').click(function(){
-		$(this).find('.list-tagItem p').text("다운로드 : " + (parseInt($(this).find('.list-tagItem').text().split("다운로드 : ")[1]) + 1));
-		window.open("/cheat/download?id=" + $(this).attr('alt'));
-	});
+    $(document).on('click', '.content-listCheatItem', function(){
+        $(this).find('.list-tagItem p').text("다운로드 : " + (parseInt($(this).find('.list-tagItem').text().split("다운로드 : ")[1]) + 1));
+        window.open("/cheat/download?id=" + $(this).attr('alt'));
+    });
 
 	$('#form-search').keydown(function(event){
         if (event.keyCode == 13){
@@ -66,6 +66,12 @@ $(document).ready(function(){
             }, 'json');
 		}
 	})
+
+    $(window).scroll(function(){
+        if($(window).scrollTop() == $(document).height() - $(window).height()){
+            cheatAdd();
+        }
+    });
 });
 
 function uploadClick(){
@@ -83,6 +89,20 @@ function uploadClick(){
 		}
 	});
 	return input_check_flag;
+}
+
+function cheatAdd(){
+    $.get("/cheat/get", function(data){
+        JSON.parse(data).forEach(function(value, index){
+            var tag = '<div class="content-listCheatItem" alt="' + value.id + '"><img class="list-professorImg" src="/images/professor/' +
+                value.professor + '.jpg"><div class="list-content"><span class="list-headText"><strong>' +
+                '</strong></span><span class="list-subText">' + value.professor + ' 교수님</span><div class="list-line"></div><p class="list-contentText">' +
+                value.content + '</p><div class="list-bottomLine"></div><div class="list-tagArea"><div class="list-tagItem"><p>다운로드 : ' +
+                value.download_count + '</p></div></div></div><div class="content-coverWrap">' +
+                '<div class="content-listCover"></div><img class="content-downloadBtn" src="/images/download.svg"></div></div>';
+            $('#content-listArea').append(tag);
+        });
+    });
 }
 
 
