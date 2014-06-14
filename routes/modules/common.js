@@ -2,7 +2,7 @@
  * Created by add2paper on 2014. 6. 12..
  */
 
-var DEBUG = true;
+var DEBUG = false;
 
 var common = (function(){
     return {

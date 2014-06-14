@@ -6,7 +6,6 @@ $(document).ready(function(){
     $('#search-form').keydown(function(event){
         if (event.keyCode == 13){
             if ($(this).val() != ''){
-                alert(123)
                 location.href = '/estimation?name=' + $(this).val();
             }
             else
