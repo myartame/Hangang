@@ -59,6 +59,15 @@ app.get('/join', userMgr.join);
 app.post('/view', view.input);
 app.post('/cheat/upload', cheat.upload);
 
+// Exception Mail Send
+process.on('uncaughtException', function(error){
+    require("mail").send({
+        to: "hyurecord@gmail.com",
+        subject: "한학기 에러",
+        text: error
+    });
+});
+
 var server = http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
