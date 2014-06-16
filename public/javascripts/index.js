@@ -36,9 +36,11 @@ $(document).ready(function(){
 
     if (document.URL.split("login=")[1] == "fail"){
         alert("권한이 없습니다! 로그인 해주세요.");
+        location.replace('/');
     }
     else if(document.URL.split("login=")[1] == "sucess"){
         alert("회원가입이 정상적으로 처리되었습니다.");
+        location.replace('/');
     }
 });
 

@@ -8,7 +8,7 @@ var common = (function(){
     return {
         debug: DEBUG,
         port: DEBUG ? 3000 : 80,
-        url: DEBUG ? "http://www.hyurecord.com" : "http://127.0.0.1",
+        url: DEBUG ? "http://127.0.0.1:3000" : "http://www.hyurecord.com",
     }
 }());
 
