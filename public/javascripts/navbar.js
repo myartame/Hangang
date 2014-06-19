@@ -44,6 +44,9 @@ function loginCheck(){
             }
         });
     }
+    else{
+        $('#navbar-collapseContainer').hide();
+    }
 }
 
 function setLoginForm(){
