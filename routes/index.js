@@ -34,8 +34,8 @@ exports.index = function(req, res){
         console.log("index : " + sql)
     }
     else{
-        res.render("index.html");
         req.session.newCommentCount = 0;
         console.log("NewCommentCount : " + req.session.newCommentCount)
+        res.render("index.html");
     }
 };

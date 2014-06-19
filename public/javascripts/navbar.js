@@ -24,24 +24,26 @@ $(document).ready(function(){
 });
 
 function loginCheck(){
-    $.ajax({
-        type : "POST",
-        url : "/login",
-        contentType : "application/json",
-        data : JSON.stringify({
-            email : getCookie('email'),
-            password : getCookie('password')
-        }),
-        
-        success : function(data){
-            if (data.flag){
-                $('#navbar-loginContainer').hide();
+    if (getCookie('email') != '' && getCookie('email') != undefined){
+        $.ajax({
+            type : "POST",
+            url : "/login",
+            contentType : "application/json",
+            data : JSON.stringify({
+                email : getCookie('email'),
+                password : getCookie('password')
+            }),
+            
+            success : function(data){
+                if (data.flag){
+                    $('#navbar-loginContainer').hide();
+                }
+                else{
+                    $('#navbar-collapseContainer').hide();
+                }
             }
-            else{
-                $('#navbar-collapseContainer').hide();
-            }
-        }
-    });
+        });
+    }
 }
 
 function setLoginForm(){
