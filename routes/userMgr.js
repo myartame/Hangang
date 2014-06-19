@@ -11,7 +11,7 @@ exports.loginCheck = function(req, res, next){
         next();
     }
     else {
-        res.redirect('/?login=fail');
+        res.redirect('/user?login=fail');
     }
 }
 
@@ -39,7 +39,7 @@ exports.join = function(req, res){
         if (error == null){
             req.session.user_id = req.query.email;
         }
-        res.redirect('/?login=sucess');
+        res.redirect('/user?login=sucess');
     });
 }
 

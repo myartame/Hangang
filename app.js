@@ -55,6 +55,9 @@ app.get('/cheat', userMgr.loginCheck, cheat.index);
 app.get('/cheat/get', cheat.get);
 app.get('/cheat/download', cheat.download);
 app.get('/join', userMgr.join);
+app.get('/user', function(req, res){
+    res.render("join.html");
+});
 
 app.post('/view', view.input);
 app.post('/cheat/upload', cheat.upload);
