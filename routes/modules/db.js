@@ -25,7 +25,7 @@ exports.makeQueryString = function(sql, values){
         makesql = makesql.replace('{' + i + '}', mysql.escape(values[i]));
     }
 
-    if (require('./common').get().debug)
+    if (!require('./common').get().debug)
         console.log("SQL : " + makesql);
     return makesql;
 }
