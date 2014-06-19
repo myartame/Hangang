@@ -31,9 +31,11 @@ exports.index = function(req, res){
 
     if (sql != null){
         db.get(res, sql, callback);
+        console.log("index : " + sql)
     }
     else{
         res.render("index.html");
         req.session.newCommentCount = 0;
+        console.log("NewCommentCount : " + req.session.newCommentCount)
     }
 };
