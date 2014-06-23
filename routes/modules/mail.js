@@ -10,7 +10,7 @@ exports.send = function(option){
     });
 
     var mailOptions = {
-        from: '한학기 <hyurecord@gmail.com>',
+        from: '휴레코드 <hyurecord@gmail.com>',
         to: option.to,
         subject: option.subject,
         text: option.text,
