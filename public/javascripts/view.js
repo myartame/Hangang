@@ -35,6 +35,11 @@ $(document).ready(function(){
                 content: $('#comment-input').val(),
                 rate: star_rate
             }
+            if (input_data.content.length < 20){
+                alert("20자 이상 입력해주세요!");
+                return false;
+            }
+            
             $.ajax({
                 type : "POST",
                 url : "/view",
@@ -139,16 +144,11 @@ function setStarView(){
         }
     });
     $('#comment-starArea img').mouseout(function(){
-        if (star_click_count == 0){
-            $('#comment-starArea img').attr('src', '/images/star_disenable.png');
+        for (var i = 0 ; i <= star_click_count ; i++){
+            $('#comment-starArea img').eq(i).attr('src', '/images/star_enable.png');
         }
-        else{
-            for (var i = 0 ; i <= star_click_count ; i++){
-                $('#comment-starArea img').eq(i).attr('src', '/images/star_enable.png');
-            }
-            for (var j = star_click_count + 1 ; j < 5 ; j++){
-                $('#comment-starArea img').eq(j).attr('src', '/images/star_disenable.png');
-            }
+        for (var j = star_click_count + 1 ; j < 5 ; j++){
+            $('#comment-starArea img').eq(j).attr('src', '/images/star_disenable.png');
         }
     });
     $('#comment-starArea img').click(function(){
