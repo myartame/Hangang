@@ -170,7 +170,7 @@ function setJoinForm(){
             alert("이메일을 입력해주세요!");
         }
         else{
-            $.get("?event=mail&email=" + $('#joinMail').val(), function(data){
+            $.get("/passwordGet&email=" + $('#joinMail').val(), function(data){
                 if (data.flag == true) { 
                     alert("메일이 발송되었습니다! 메일을 확인해주세요.");
                     $('#passwordModal').modal('hide');

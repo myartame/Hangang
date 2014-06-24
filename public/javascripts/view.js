@@ -5,6 +5,8 @@
 var star_click_count = 0;
 
 $(document).ready(function(){
+    var view_width = $('#content-mainArea').width() - $('#main-imgArea img').width();
+    $('#main-commentArea').css("width", view_width);
     setMainViewWidth();
     setContentBtn();
     setImgTextCenter();
@@ -60,8 +62,10 @@ $(document).ready(function(){
 });
 
 function setMainViewWidth(){
-    var view_width = $('.container').width() - $('#main-imgArea img').width() - 2;
-    $('#main-commentArea').css("width", view_width);
+    $(window).bind('resize', function () { 
+        var view_width = $('#content-mainArea').width() - $('#main-imgArea img').width();
+        $('#main-commentArea').css("width", view_width);
+    });
 }
 
 function setContentBtn(){

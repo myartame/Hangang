@@ -36,9 +36,9 @@ $(document).ready(function(){
 });
 
 function listAdd(){
-    $.get("?event=get", function(data){
+    $.get("/get", function(data){
         JSON.parse(data).forEach(function(comment_data, index){
-            $.get("?event=data&lecture_id=" + comment_data.lecture_id, function(db_data){
+            $.get("/data?lecture_id=" + comment_data.lecture_id, function(db_data){
                 var tagData = JSON.parse(db_data)[0];
                 var starTag = "";
 
@@ -67,7 +67,7 @@ function listAdd(){
 }
 
 function listItemAdd(lecture_id, content, comment_rate){
-    $.get("?event=data&lecture_id=" + lecture_id, function(db_data){
+    $.get("/data?lecture_id=" + lecture_id, function(db_data){
         var tagData = JSON.parse(db_data)[0];
         var starTag = "";
 

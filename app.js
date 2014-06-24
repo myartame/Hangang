@@ -8,10 +8,9 @@ var routes       = require('./routes');
 var http         = require('http');
 var path         = require('path');
 var socketio     = require('socket.io');
-var cookieParser = require('cookie-parser');
-var session      = require('express-session');
 
 var userMgr      = require('./routes/userMgr');
+var index        = require('./routes/index');
 var estimation   = require('./routes/estimation');
 var view         = require('./routes/view');
 var cheat        = require('./routes/cheat');
@@ -26,9 +25,9 @@ app.engine('html', require('ejs').renderFile);
 
 app.use(express.bodyParser());
 
-app.use(cookieParser()) // required before session.
-app.use(session({
-    secret: '핫핫'
+app.use(express.cookieParser()) // required before session.
+app.use(express.session({
+    secret: '핫핫',
 }));
 
 app.use(express.favicon());
@@ -49,6 +48,10 @@ app.post('/login', userMgr.login);
 app.post('/mail', userMgr.mail);
 
 app.get('/', routes.index);
+app.get('/get', index.get);
+app.get('/data', index.data);
+app.get('/passwordGet', index.passwordGet);
+
 app.get('/estimation', userMgr.loginCheck, estimation.index);
 app.get('/view', userMgr.loginCheck, view.index);
 app.get('/cheat', userMgr.loginCheck, cheat.index);
