@@ -32,13 +32,13 @@ exports.index = function(req, res){
                 view_data = result;
                 view_data[0]['flag'] = req.query.flag;
             }
+            console.log(view_data)
             res.render("view.html", { data: view_data });
         });
     }
 }
 
 exports.input = function(req, res){
-    console.log(req.body.content)
     db.get(res, db.makeQueryString('INSERT INTO comment (email, content, lecture_id, rate, like_count, dis_count) VALUES ({0}, {1}, {2}, {3}, 0, 0)',
         [ req.session.user_id || '', req.body.content, req.body.lecture_id, req.body.rate ]), function(error, result){
             if (error == null){
@@ -48,6 +48,7 @@ exports.input = function(req, res){
                 db.get(res, sql);
             }
         });
+    console.log("Input : " + req.body.content);
 }
 
 function getComment(req, res){
