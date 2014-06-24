@@ -216,7 +216,7 @@
                     <% data.forEach(function(item, index){ %>
                     <div class="content-item" alt="<%= item.id %>">
                         <div id="item-box">
-                            <img id="item-thumbnail" src="/images/professor/<%= item.professor %>.jpg">
+                            <img id="item-thumbnail" src="/images/professor/<%= item.professor %>.jpg" onError="this.src='/images/noimage.jpg'">
                             <div id="item-textArea">
                                 <span id="item-headText"><strong><%= item.name %></strong></span>
                                 <span id="item-subText"><%= item.professor %></span>

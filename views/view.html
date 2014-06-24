@@ -57,7 +57,7 @@
                 </div>
                 <div id="content-mainArea">
                     <div id="main-imgArea">
-                        <img id="professor-img" src="/images/professor/<%= data[0].professor%>.jpg" alt="<%= data[0].id %>">
+                        <img id="professor-img" src="/images/professor/<%= data[0].professor%>.jpg" alt="<%= data[0].id %>" onError="this.src='/images/noimage.jpg'">
                         <div id="main-textArea">
                             <div id="main-textView">
                                 <p id="main-headText"><%= data[0].name %></p>

@@ -53,7 +53,7 @@ function listAdd(){
 
                 var content = comment_data.content.length >= CONTENT_MAX ? comment_data.content.substr(0, CONTENT_MAX - 1) + '...' : comment_data.content;
                 
-                var tag = '<div class="content-listItem" style="top:' + list_position + 'px;" alt="' + comment_data.lecture_id + '"><img class="list-professorImg" src="/images/professor/' + tagData.professor + '.jpg"><div class="list-content">' +
+                var tag = '<div class="content-listItem" style="top:' + list_position + 'px;" alt="' + comment_data.lecture_id + '"><img class="list-professorImg" src="/images/professor/' + tagData.professor + '.jpg" onError="this.src=\'/images/noimage.jpg\'"><div class="list-content">' +
                     '<span class="list-headText"><strong>' + tagData.name + '</strong></span><span class="list-subText">' +
                     tagData.professor + ' 교수님' + '</span><div class="list-line"></div><p class="list-contentText">' + content +
                     '</p><div class="list-starArea">' + starTag + '</div><div class="list-line"></div><div class="list-tagArea">' +
@@ -83,7 +83,7 @@ function listItemAdd(lecture_id, content, comment_rate){
         var _content = content.length >= CONTENT_MAX ? content.substr(0, CONTENT_MAX - 1) + '...' : content;
 
         var tag = '<div class="content-listItem content-newListItem" style="top: 0px;" alt="' + lecture_id + '">' +
-            '<img class="list-professorImg" src="/images/professor/' + tagData.professor + '.jpg"><div class="list-content">' +
+            '<img class="list-professorImg" src="/images/professor/' + tagData.professor + '.jpg" onError="this.src=\'/images/noimage.jpg\'"><div class="list-content">' +
             '<span class="list-headText"><strong>' + tagData.name + '</strong></span><span class="list-subText">' +
             tagData.professor + ' 교수님' + '</span><div class="list-line"></div><p class="list-contentText">' + _content +
             '</p><div class="list-starArea">' + starTag + '</div><div class="list-line"></div><div class="list-tagArea">' +
