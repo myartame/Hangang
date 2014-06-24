@@ -3,15 +3,13 @@ var inputAlertContext = [
 	"과목명을", "교수명을", "분류를", "자료를"
 ];
 
-$(document).ready(function(){
-	/*$('.content-coverWrap').hover(function(){
-        $(this).children('.content-listCover').stop(true, true).animate({"opacity": "0.7"}, 300);
-        $(this).children('.content-downloadBtn').stop(true, true).animate({"opacity": "0.7"}, 300);
-    }, function(){
-        $(this).children('.content-listCover').stop(true, true).animate({"opacity": "0"}, 300)
-        $(this).children('.content-downloadBtn').stop(true, true).animate({"opacity": "0"}, 300);
-    });*/
+var comment_index = 0;
+var comment_count = 5;
 
+$(document).ready(function(){
+    comment_count += $(window).height() < 864 ? 0 : Math.round(($(window).height() - 864) / 127);
+    cheatAdd();
+    
 	$('#uploadDialog').hide().change(function() { 
 		$('#uploadLargeInput').val($(this).val().split('\\').pop());
 	});
@@ -92,7 +90,7 @@ function uploadClick(){
 }
 
 function cheatAdd(){
-    $.get("/cheat/get", function(data){
+    $.get("/cheat/get?comment_index=" + comment_index + "&comment_count=" + comment_count, function(data){
         JSON.parse(data).forEach(function(value, index){
             var tag = '<div class="content-listCheatItem" alt="' + value.id + '"><img class="list-professorImg" src="/images/professor/' +
                 value.professor + '.jpg"><div class="list-content"><span class="list-headText"><strong>' +
@@ -102,6 +100,8 @@ function cheatAdd(){
                 '<div class="content-listCover"></div><img class="content-downloadBtn" src="/images/download.svg"></div></div>';
             $('#content-listArea').append(tag);
         });
+        comment_index += comment_count;
+        comment_count = 5;
     });
 }
 

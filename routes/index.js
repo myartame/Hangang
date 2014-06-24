@@ -2,14 +2,15 @@ var db = require('./modules/db');
 var mail = require('./modules/mail');
 
 exports.index = function(req, res){
-    req.session.newCommentCount = 0;
     res.render("index.html");
 };
 
 exports.get = function(req, res){
-    var sql = db.makeQueryString("SELECT * FROM comment ORDER BY id DESC LIMIT {0}, 5",
-        [ req.session.newCommentCount ]);
-    req.session.newCommentCount += 5;
+    //var sql = db.makeQueryString("SELECT * FROM comment ORDER BY id DESC LIMIT {0}, {1}",
+    //    [ req.query.comment_index, req.query.comment_count ]);
+    var sql = "SELECT * FROM comment ORDER BY id DESC LIMIT " + req.query.comment_index +
+        ", " + req.query.comment_count;
+    console.log("SQL : " + sql);
     db.get(res, sql);
 }
 

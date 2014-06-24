@@ -11,18 +11,18 @@ exports.index = function(req, res){
             [ '%' + req.query.value + '%', '%' + req.query.value + '%' ]));
     db.get(res, sql, function(error, result){
             if (error == null){
-                req.session.newCommentCount = 5;
                 res.render("cheat.html", { data:result });
             }
         });
 }
 
 exports.get = function(req, res){
-    var sql = "SELECT * FROM cheat ORDER BY id DESC LIMIT " + req.session.newCommentCount + ", 5";
+    var sql = "SELECT * FROM cheat ORDER BY id DESC LIMIT " +
+        req.query.comment_index + ", " + req.query.comment_count;
+    console.log("SQL : " + sql);
     db.get(res, sql, function(error, result){
         var data = result || {};
         if (error == null){
-            req.session.newCommentCount += 5;
         }
         res.send(200, JSON.stringify(data));
     });

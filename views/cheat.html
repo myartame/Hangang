@@ -62,9 +62,9 @@
                     </div>
                 </div>
                 <div id="content-listArea">
-                    <% data.forEach(function(value, index){ %>
+                    <!--<% data.forEach(function(value, index){ %>
                     <div class="content-listCheatItem" alt="<%= value.id %>">
-                        <img class="list-professorImg" src="/images/professor/<%= value.professor %>.jpg">
+                        <img class="list-professorImg" src="/images/professor/<%= value.professor %>.jpg" onError="this.src='/images/noimage.jpg'">
                         <div class="list-content">
                             <span class="list-headText">
                                 <strong><%= value.lecture %></strong>
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <% }); %>
+                    <% }); %>-->
                 </div>
             </div>
         </div>

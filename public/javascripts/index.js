@@ -2,12 +2,16 @@
  * Created by JP on 2014. 1. 4..
  */ 
 
-const CONTENT_MAX = 55;
+const CONTENT_MAX = 52;
 
 var list_position = 0;
 var input_array = new Array();
 
+var comment_index = 0;
+var comment_count = 5;
+
 $(document).ready(function(){
+    comment_count += $(window).height() < 864 ? 0 : Math.round(($(window).height() - 864) / 127);
     listAdd();
 
     $(window).scroll(function(){
@@ -36,7 +40,7 @@ $(document).ready(function(){
 });
 
 function listAdd(){
-    $.get("/get", function(data){
+    $.get("/get?comment_index=" + comment_index + "&comment_count=" + comment_count, function(data){
         JSON.parse(data).forEach(function(comment_data, index){
             $.get("/data?lecture_id=" + comment_data.lecture_id, function(db_data){
                 var tagData = JSON.parse(db_data)[0];
@@ -63,6 +67,8 @@ function listAdd(){
                 list_position += 135;
             });
         });
+        comment_index += comment_count;
+        comment_count = 5;
     });
 }
 
