@@ -6,8 +6,6 @@ exports.index = function(req, res){
 };
 
 exports.get = function(req, res){
-    //var sql = db.makeQueryString("SELECT * FROM comment ORDER BY id DESC LIMIT {0}, {1}",
-    //    [ req.query.comment_index, req.query.comment_count ]);
     var sql = "SELECT * FROM comment ORDER BY id DESC LIMIT " + req.query.comment_index +
         ", " + req.query.comment_count;
     console.log("SQL : " + sql);

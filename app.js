@@ -67,10 +67,11 @@ app.post('/cheat/upload', cheat.upload);
 
 // Exception Mail Send
 process.on('uncaughtException', function(error){
+    console.log("Error : " + error);
     require("./routes/modules/mail").send({
         to: "hyurecord@gmail.com",
         subject: "한학기 에러",
-        text: error
+        html: "<p>" + error + "</p>"
     });
 });
 

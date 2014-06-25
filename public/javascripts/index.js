@@ -11,7 +11,7 @@ var comment_index = 0;
 var comment_count = 5;
 
 $(document).ready(function(){
-    comment_count += $(window).height() < 864 ? 0 : Math.round(($(window).height() - 864) / 127);
+    comment_count += $(window).height() < 864 ? 0 : Math.round(($(window).height() - 864) / 127) + 1;
     listAdd();
 
     $(window).scroll(function(){
